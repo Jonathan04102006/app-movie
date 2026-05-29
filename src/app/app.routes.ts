@@ -29,7 +29,6 @@ export const routes: Routes = [
     component: Navbar
   },
   
-  // 2. DESCOMENTA Y DEJA ACTIVA ESTA RUTA DINÁMICA:
   {
     path: 'movie/:id',
     component: MovieDetail
