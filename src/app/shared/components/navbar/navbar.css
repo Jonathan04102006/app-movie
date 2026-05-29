@@ -1,0 +1,246 @@
+/* ==========================================================================
+   1. BASE / ESCRITORIO ESTÁNDAR (1025px - 1440px)
+   ========================================================================== */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 68px;
+  background-color: rgba(7, 11, 18, 0.8);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(20, 31, 50, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 4%;
+  z-index: 100;
+  box-sizing: border-box;
+}
+
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+
+.logo {
+  color: #ffffff;
+  font-size: 1.35rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.logo span {
+  color: #00b493;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links li a {
+  color: #94a3b8;
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 500;
+  padding: 22px 0;
+  position: relative;
+  transition: color 0.2s ease;
+  display: inline-block;
+}
+
+.nav-links li a:hover {
+  color: #ffffff;
+}
+
+.nav-links li a.active {
+  color: #00b493;
+  font-weight: 600;
+}
+
+.nav-links li a.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #00b493;
+  border-radius: 2px 2px 0 0;
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.search-box {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.search-box input {
+  background-color: #0f1622;
+  border: 1px solid #141f32;
+  color: #ffffff;
+  padding: 8px 16px;
+  padding-right: 40px;
+  border-radius: 8px;
+  outline: none;
+  font-size: 0.9rem;
+  width: 220px;
+  transition: all 0.25s ease;
+}
+
+.search-box input:focus {
+  border-color: #00b493;
+  width: 280px;
+  box-shadow: 0 0 0 3px rgba(0, 180, 147, 0.15);
+}
+
+.icon-search {
+  position: absolute;
+  right: 12px;
+  width: 18px;
+  height: 18px;
+  fill: #64748b;
+  pointer-events: none;
+  transition: fill 0.2s ease;
+}
+
+.search-box input:focus + .icon-search {
+  fill: #00b493;
+}
+
+.user-profile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #64748b;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.user-profile:hover {
+  color: #00b493;
+}
+
+.icon-user {
+  width: 26px;
+  height: 26px;
+  fill: currentColor;
+}
+
+/* ==========================================================================
+   2. TABLETS GRANDES / ESCRITORIO PEQUEÑO (769px - 1024px)
+   ========================================================================== */
+@media (max-width: 1024px) {
+  .navbar {
+    padding: 0 3%;
+  }
+
+  .nav-left {
+    gap: 24px; /* Reducción de separación para evitar desbordamientos */
+  }
+
+  .nav-links {
+    gap: 20px;
+  }
+
+  .search-box input {
+    width: 180px;
+  }
+
+  .search-box input:focus {
+    width: 220px; /* Expansión contenida */
+  }
+}
+
+/* ==========================================================================
+   3. TABLETS (481px - 768px)
+   ========================================================================== */
+@media (max-width: 768px) {
+  .navbar {
+    height: auto;
+    padding: 12px 24px;
+    flex-wrap: wrap; /* Permite que el buscador baje si el espacio es crítico */
+    gap: 12px;
+  }
+
+  .nav-left {
+    width: 100%;
+    justify-content: space-between; /* Distribuye el logo y las pestañas en los extremos */
+    gap: 0;
+  }
+
+  .nav-links li a {
+    padding: 8px 0; /* Menos padding vertical para una barra más esbelta */
+  }
+
+  .nav-links li a.active::after {
+    bottom: -4px; /* Reposicionamiento del indicador */
+  }
+
+  .nav-right {
+    width: 100%;
+    justify-content: space-between; /* El input toma balance al lado izquierdo y el perfil al derecho */
+  }
+
+  .search-box {
+    flex: 1;
+    max-width: 85%;
+  }
+
+  .search-box input,
+  .search-box input:focus {
+    width: 100%; /* El input se vuelve completamente fluido */
+    box-shadow: none;
+  }
+}
+
+/* ==========================================================================
+   4. MÓVILES (320px - 480px)
+   ========================================================================== */
+@media (max-width: 480px) {
+  .navbar {
+    padding: 12px 16px;
+  }
+
+  .logo {
+    font-size: 1.2rem; /* Tipografía ligeramente más compacta */
+  }
+
+  .nav-links {
+    gap: 16px; /* Ajuste milimétrico de los enlaces */
+  }
+
+  .nav-links li a {
+    font-size: 0.85rem;
+  }
+
+  .search-box {
+    max-width: 80%;
+  }
+
+  .search-box input {
+    padding: 6px 12px;
+    padding-right: 36px;
+    font-size: 0.85rem;
+  }
+
+  .icon-user {
+    width: 24px;
+    height: 24px;
+  }
+}

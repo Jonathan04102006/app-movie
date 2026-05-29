@@ -1,0 +1,278 @@
+/* ==========================================================================
+   1. BASE / ESCRITORIO ESTÁNDAR (1025px - 1440px)
+   ========================================================================== */
+.favorites-container {
+  min-height: 100vh;
+  background-color: #070b12;
+  color: #ffffff;
+  padding-top: 68px; /* Ajustado exacto a la altura real del Navbar */
+  padding-bottom: 60px;
+  box-sizing: border-box;
+}
+
+.favorites-section {
+  padding: 24px 4% 0 4%;
+}
+
+.section-title {
+  font-family: 'Cinzel', serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 24px;
+  letter-spacing: -0.5px;
+}
+
+/* GRID ADAPTABLE (5 columnas por defecto) */
+.movies-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.movie-card {
+  background-color: #0f1622;
+  border: 1px solid #141f32;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.25s ease, border-color 0.25s ease;
+}
+
+.movie-card:hover {
+  transform: translateY(-6px);
+  border-color: #00b493;
+}
+
+.poster-wrapper {
+  position: relative;
+  aspect-ratio: 2 / 3;
+  background-color: #141f32;
+  overflow: hidden;
+}
+
+.movie-poster {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* BOTÓN ELIMINAR REAL (.btn-remove flotando arriba) */
+.btn-remove {
+  position: absolute !important;
+  top: 12px !important;
+  right: 12px !important;
+  background-color: rgba(7, 11, 18, 0.6) !important;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  width: 36px !important;
+  height: 36px !important;
+  border-radius: 50% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease;
+  z-index: 10 !important; /* Fuerza al botón a ponerse al frente del póster */
+  padding: 0 !important;
+}
+
+.btn-remove:hover {
+  transform: scale(1.1);
+  background-color: rgba(220, 38, 38, 0.8) !important; /* Cambia a rojo sutil al pasar el mouse */
+  border-color: rgba(220, 38, 38, 1) !important;
+}
+
+.icon-trash {
+  width: 18px;
+  height: 18px;
+  fill: #64748b; /* Gris base elegante */
+  transition: fill 0.2s ease;
+}
+
+.btn-remove:hover .icon-trash {
+  fill: #ffffff; /* El bote de basura se ilumina blanco al hacer hover */
+}
+
+/* INFO DE LA TARJETA */
+.movie-info {
+  padding: 12px;
+}
+
+.movie-info .movie-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin: 0 0 6px 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.movie-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  color: #64748b;
+}
+
+.rating {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: #fbbf24;
+  font-weight: 700;
+}
+
+.icon-star {
+  width: 14px;
+  height: 14px;
+  fill: currentColor;
+}
+
+/* ESTADO VACÍO MULTIDISPOSITIVO */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.empty-icon-wrapper {
+  margin-bottom: 16px;
+}
+
+.icon-heart-empty {
+  width: 64px;
+  height: 64px;
+  fill: none;
+  stroke: #141f32;
+  stroke-width: 1.5;
+}
+
+.empty-state h2 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin: 0 0 8px 0;
+}
+
+.empty-state p {
+  color: #64748b;
+  max-width: 400px;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin: 0 0 24px 0;
+}
+
+.btn-browse {
+  background-color: #00b493;
+  color: #070b12;
+  text-decoration: none;
+  padding: 12px 24px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.btn-browse:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 180, 147, 0.25);
+}
+
+/* ==========================================================================
+   2. TABLETS GRANDES / ESCRITORIO PEQUEÑO (769px - 1024px)
+   ========================================================================== */
+@media (max-width: 1024px) {
+  .movies-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 20px;
+  }
+}
+
+/* ==========================================================================
+   3. TABLETS (481px - 768px)
+   ========================================================================== */
+@media (max-width: 768px) {
+  .movies-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+  }
+}
+
+/* ==========================================================================
+   4. MÓVILES (320px - 480px) - PORTADAS DE 2 EN 2 CON EL BOTÓN ARRIBA
+   ========================================================================== */
+@media (max-width: 480px) {
+  .favorites-container {
+    padding-top: 120px !important; /* Evita que el Navbar de doble fila tape el título */
+  }
+
+  .favorites-section {
+    padding: 20px 12px 0 12px !important;
+  }
+
+  .section-title {
+    font-size: 1.2rem;
+    margin-bottom: 16px;
+  }
+
+  /* LA GRILLA EN MÓVIL: Fuerza parejas perfectas */
+  .movies-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, calc(50% - 6px)) !important;
+    gap: 12px !important;
+    width: 100% !important;
+    padding: 0 !important;
+    box-sizing: border-box;
+  }
+
+  .movies-grid > * {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box;
+  }
+
+  .movie-card {
+    width: 100% !important;
+    max-width: 100% !important;
+    border-radius: 12px !important;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .poster-wrapper {
+    width: 100% !important;
+    aspect-ratio: 2 / 3 !important;
+  }
+
+  /* Ajustes compactos para el botón flotante en móviles */
+  .btn-remove {
+    top: 8px !important;
+    right: 8px !important;
+    width: 32px !important;
+    height: 32px !important;
+    background-color: rgba(7, 11, 18, 0.7) !important;
+  }
+
+  .icon-trash {
+    width: 15px;
+    height: 15px;
+    fill: #ffffff; /* Blanco directo en móviles para asegurar excelente contraste */
+  }
+
+  .movie-info {
+    padding: 10px !important;
+  }
+
+  .movie-info .movie-title {
+    font-size: 0.85rem !important;
+    margin-bottom: 4px !important;
+  }
+
+  .movie-meta {
+    font-size: 0.75rem !important;
+  }
+}

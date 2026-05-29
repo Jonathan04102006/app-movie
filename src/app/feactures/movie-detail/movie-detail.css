@@ -1,0 +1,643 @@
+/* ==========================================================================
+   1. CONTENEDOR GENERAL Y FUENTES
+   ========================================================================== */
+.detail-container {
+  min-height: 100vh;
+  background-color: #070b12; /* Fondo oscuro elegante */
+  color: #ffffff;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  overflow-x: hidden;
+}
+
+/* ==========================================================================
+   2. BLOQUE SUPERIOR: HERO BANNER INMERSIVO
+   ========================================================================== */
+.movie-hero-banner {
+  position: relative;
+  width: 100%;
+  min-height: 70vh;
+  background-size: cover;
+  background-position: center 20%;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: flex-end;
+  padding: 40px 5%;
+  box-sizing: border-box;
+}
+
+/* Capa de degradado cinematográfico para asegurar legibilidad */
+.banner-shadow-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    rgba(7, 11, 18, 0.4) 0%,
+    rgba(7, 11, 18, 0.7) 60%,
+    #070b12 100%
+  );
+  z-index: 1;
+}
+
+/* Núcleo de contenido sobre el overlay */
+.banner-content-core {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  width: 100%;
+}
+
+/* Botón Volver */
+.btn-banner-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  margin-bottom: 24px;
+  backdrop-filter: blur(8px);
+  transition: all 0.2s ease;
+}
+
+.btn-banner-back:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateX(-4px);
+}
+
+.icon-arrow-back {
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
+}
+
+/* Título de la Película */
+.banner-movie-title {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 800;
+  margin: 0 0 16px 0;
+  line-height: 1.1;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+/* Fila de Metadatos (Año, Duración, Clasificación) */
+.banner-meta-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.95rem;
+  color: #94a3b8;
+  margin-bottom: 20px;
+}
+
+.meta-dot {
+  color: #475569;
+}
+
+.meta-badge-cert {
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  font-weight: bold;
+  color: #ffffff;
+}
+
+/* Fila de Acciones (Score y Favoritos) */
+.banner-actions-row {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 24px;
+}
+
+.banner-score-box {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(7, 11, 18, 0.6);
+  padding: 6px 12px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.icon-yellow-star {
+  width: 20px;
+  height: 20px;
+  fill: #ffb800;
+}
+
+.score-number {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.score-max {
+  font-size: 0.85rem;
+  color: #64748b;
+}
+
+/* Botón Favoritos */
+.btn-banner-fav {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-banner-fav:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: #ffffff;
+}
+
+.icon-heart-hollow {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  transition: transform 0.2s ease;
+}
+
+/* Estado Activo de Favoritos */
+.btn-banner-fav.is-favorite-active {
+  background: rgba(216, 79, 52, 0.1);
+  border-color: #d84f34;
+  color: #d84f34;
+}
+
+.btn-banner-fav.is-favorite-active .icon-heart-hollow {
+  fill: #d84f34;
+  stroke: #d84f34;
+  transform: scale(1.1);
+}
+
+/* Sinopsis / Overview */
+.banner-movie-overview {
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: #cbd5e1;
+  margin: 0 0 28px 0;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+}
+
+/* Botones de Llamado a la Acción (CTA) */
+.banner-cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.btn-cta-primary-play {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background-color: #00b493; /* Accent color premium */
+  color: #ffffff;
+  border: none;
+  padding: 14px 28px;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 6px 20px rgba(0, 180, 147, 0.15);
+  transition: all 0.2s ease;
+}
+
+.btn-cta-primary-play:hover {
+  background-color: #00b493;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 180, 147, 0.15);
+}
+
+.icon-play-fill {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+}
+
+.btn-cta-secondary-info {
+  display: inline-flex;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 14px 28px;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  transition: all 0.2s ease;
+}
+
+.btn-cta-secondary-info:hover {
+  background-color: rgba(255, 255, 255, 0.18);
+}
+
+/* ==========================================================================
+   3. BLOQUE INFERIOR: REPARTO PRINCIPAL (SLIDER LIMPIO SIN SCROLLBARS)
+   ========================================================================== */
+.movie-body-extend {
+  padding: 0 5% 60px 5%;
+}
+
+.section-reparto-block {
+  margin-bottom: 50px;
+}
+
+.reparto-header-flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.reparto-title-label {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+/* Flechas de navegación del slider */
+.reparto-arrows-container {
+  display: flex;
+  gap: 8px;
+}
+
+.btn-arrow-slide {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #111823;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-arrow-slide:hover {
+  background: #1e293b;
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.btn-arrow-slide svg {
+  width: 24px;
+  height: 24px;
+  fill: currentColor;
+}
+
+/* Contenedor del Track */
+.reparto-slider-viewport {
+  position: relative;
+  width: 100%;
+}
+
+.reparto-scroll-track {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding-bottom: 10px;
+  /* Oculta la barra de scroll en navegadores modernos */
+  scrollbar-width: none; /* Firefox */
+}
+
+.reparto-scroll-track::-webkit-scrollbar {
+  display: none; /* Chrome, Safari y Opera */
+}
+
+/* Tarjeta de Actor Individual */
+.actor-card-item {
+  flex: 0 0 160px; /* Ancho fijo bloqueado para evitar deformaciones */
+  background: #0f1622;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.actor-card-item:hover {
+  transform: translateY(-4px);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.actor-img-frame {
+  width: 100%;
+  height: 210px;
+  background-color: #1a2333;
+  overflow: hidden;
+}
+
+.actor-photo-asset {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.actor-data-labels {
+  padding: 12px;
+}
+
+.actor-name-text {
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin: 0 0 4px 0;
+  color: #ffffff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.actor-character-text {
+  font-size: 0.8rem;
+  color: #64748b;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ==========================================================================
+   4. SECCIÓN TÉCNICA E INFORMATIVA INFERIOR (3 COLUMNAS)
+   ========================================================================== */
+.section-technical-footer {
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  padding-top: 40px;
+}
+
+.technical-main-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0 0 24px 0;
+}
+
+.technical-three-columns {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 32px;
+}
+
+.tech-card-box {
+  background: #0f1622;
+  border-radius: 12px;
+  padding: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.02);
+}
+
+.tech-card-subtitle {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0 0 20px 0;
+  color: #94a3b8;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  padding-bottom: 10px;
+}
+
+/* Layout de Filas de Ficha Técnica */
+.table-rows-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.t-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.t-label {
+  color: #64748b;
+  font-weight: 500;
+}
+
+.t-val {
+  color: #f1f5f9;
+  font-weight: 600;
+  text-align: right;
+  max-width: 70%;
+}
+
+/* Rejilla de Pastillas (Géneros y Keywords) */
+.pills-flex-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.genre-pill-item {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  color: #e2e8f0;
+}
+
+.keyword-pill-item {
+  background: #111823;
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  color: #94a3b8;
+}
+
+.empty-keywords {
+  font-size: 0.85rem;
+  color: #475569;
+  font-style: italic;
+}
+
+/* ==========================================================================
+   5. POP-UP MODAL TRÁILER INTERACTIVO (DISEÑO BLINDADO SIN DESBORDES)
+   ========================================================================== */
+.trailer-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(4, 7, 12, 0.95);
+  backdrop-filter: blur(10px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.trailer-modal-content {
+  position: relative;
+  width: 90%;
+  max-width: 800px;
+  background-color: #0b1119;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8);
+  display: flex;
+  flex-direction: column;
+}
+
+/* Botón flotante para cerrar el modal */
+.btn-modal-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: rgba(7, 11, 18, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.2s ease;
+}
+
+.btn-modal-close:hover {
+  background-color: #d84f34;
+  border-color: #d84f34;
+}
+
+.btn-modal-close svg {
+  width: 16px;
+  height: 16px;
+  fill: currentColor;
+}
+
+/* Proporción de aspecto 16:9 Nativa */
+.video-responsive-container {
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+  width: 100%;
+  background-color: #000000;
+}
+
+.video-responsive-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* 🛠️ BARRA DE AUXILIO DEFENSIVA: CORREGIDA EN FILA FLUIDA */
+.modal-fallback-link-zone {
+  background-color: #0f1622;
+  padding: 14px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.04);
+  box-sizing: border-box;
+}
+
+.fallback-text {
+  font-size: 0.82rem;
+  color: #64748b;
+  margin: 0;
+  line-height: 1.4;
+  text-align: left;
+  max-width: 65%;
+}
+
+/* Botón Horizontal integrado con icono controlado */
+.btn-fallback-external {
+  background-color: rgba(216, 79, 52, 0.1);
+  border: 1px solid #d84f34;
+  color: #ffffff;
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-fallback-external:hover {
+  background-color: #d84f34;
+  color: #070b12;
+}
+
+/* Control estricto de tamaño del Icono de salida */
+.icon-external-yt {
+  width: 14px;
+  height: 14px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  flex-shrink: 0;
+}
+
+/* ==========================================================================
+   6. RESPONSIVE DESIGN (BREAKPOINTS COMPACTOS)
+   ========================================================================== */
+@media (max-width: 768px) {
+  .movie-hero-banner {
+    min-height: 60vh;
+    padding: 30px 4%;
+  }
+  .banner-actions-row {
+    gap: 12px;
+  }
+  .banner-cta-row {
+    width: 100%;
+  }
+  .btn-cta-primary-play,
+  .btn-cta-secondary-info {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 600px) {
+  /* Conversión de la barra inferior del modal a vertical en dispositivos muy pequeños */
+  .modal-fallback-link-zone {
+    flex-direction: column;
+    text-align: center;
+    padding: 12px;
+    gap: 12px;
+  }
+  .fallback-text {
+    max-width: 100%;
+    text-align: center;
+    font-size: 0.78rem;
+  }
+  .btn-fallback-external {
+    width: 100%;
+    justify-content: center;
+  }
+}

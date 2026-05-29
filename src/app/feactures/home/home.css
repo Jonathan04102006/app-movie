@@ -1,0 +1,380 @@
+/* ==========================================================================
+   1. BASE / ESCRITORIO ESTÁNDAR (1025px - 1440px)
+   ========================================================================== */
+.home-container {
+  min-height: 100vh;
+  background-color: #070b12;
+  color: #ffffff;
+  padding-top: 68px; /* <-- Ajustado exacto a la altura real del Navbar para no empujar de más */
+  padding-bottom: 60px;
+  box-sizing: border-box;
+}
+
+/* HERO BANNER PRINCIPAL CORREGIDO */
+.hero-banner {
+  position: relative;
+  width: 100%;
+  height: 50vh; /* <-- RECORTADO: Pasa de 70vh a 50vh para que sea más compacto y estilizado */
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  padding: 0 6%;
+  box-sizing: border-box;
+}
+
+.hero-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 15%; /* Sube sutilmente el enfoque de la imagen de fondo */
+  z-index: 1;
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(75deg, #070b12 35%, rgba(7, 11, 18, 0.6) 65%, transparent 100%);
+  z-index: 2;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 3;
+  max-width: 600px;
+}
+
+.hero-title {
+  font-family: 'Cinzel', serif;
+  font-size: 2.8rem; /* <-- Reducido ligeramente para balancear el nuevo alto */
+  font-weight: 800;
+  margin: 0 0 12px 0;
+  line-height: 1.1;
+  letter-spacing: -1px;
+}
+
+.hero-description {
+  color: #94a3b8;
+  font-size: 1rem;
+  line-height: 1.5;
+  margin: 0 0 20px 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* SECCIÓN CATÁLOGO - SUBE PARA SER VISIBLE DE INMEDIATO */
+.movies-section {
+  padding: 24px 4% 0 4%; /* <-- Reducido el padding superior de 40px a 24px */
+}
+
+.section-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 24px;
+  letter-spacing: -0.5px;
+}
+
+/* GRID ADAPTABLE DE TARJETAS (Por defecto 5 columnas en monitor estándar) */
+.movies-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 24px;
+}
+
+/* ==========================================================================
+   ESTILO BLINDADO PARA EL BOTÓN DE EXPLORAR AHORA
+   ========================================================================== */
+.btn-primary, 
+button.btn-primary, 
+a.btn-primary {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background-color: #00b493 !important; /* Tu color verde esmeralda */
+  color: #070b12 !important; /* Texto oscuro para alto contraste */
+  border: none !important;
+  padding: 12px 28px !important;
+  font-size: 0.95rem !important;
+  font-weight: 700 !important;
+  border-radius: 8px !important; /* Esquinas suavizadas */
+  cursor: pointer !important;
+  text-decoration: none !important; /* Por si es una etiqueta <a> */
+  transition: all 0.25s ease-in-out !important;
+  box-shadow: 0 4px 14px rgba(0, 180, 147, 0.15) !important;
+  width: fit-content !important;
+}
+
+.btn-primary:hover, 
+button.btn-primary:hover, 
+a.btn-primary:hover {
+  background-color: #00987b !important; /* Un esmeralda un poco más oscuro al posarse */
+  transform: translateY(-2px) !important; /* Sutil efecto de elevación */
+  box-shadow: 0 6px 20px rgba(0, 180, 147, 0.3) !important; /* Brillo esmeralda expandido */
+}
+
+/* TARJETA DE PELÍCULA */
+.movie-card {
+  background-color: #0f1622;
+  border: 1px solid #141f32;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.25s ease, border-color 0.25s ease;
+}
+
+.movie-card:hover {
+  transform: translateY(-6px);
+  border-color: #00b493;
+}
+
+.poster-wrapper {
+  position: relative;
+  aspect-ratio: 2 / 3; /* Mantiene la proporción perfecta del póster de TMDb */
+  background-color: #141f32;
+}
+
+.movie-poster {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* BOTÓN DE FAVORITOS (CORAZÓN FLOTANTE) */
+.btn-favorite-toggle {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background-color: rgba(7, 11, 18, 0.6);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  z-index: 5;
+}
+
+.icon-heart-toggle {
+  width: 18px;
+  height: 18px;
+  fill: transparent;
+  stroke: #ffffff;
+  stroke-width: 2;
+  transition: all 0.2s ease;
+}
+
+.btn-favorite-toggle:hover {
+  transform: scale(1.1);
+  background-color: rgba(7, 11, 18, 0.9);
+}
+
+.btn-favorite-toggle.is-fav .icon-heart-toggle {
+  fill: #00b493;
+  stroke: #00b493;
+}
+
+/* INFO DE LA TARJETA */
+.movie-info {
+  padding: 12px;
+}
+
+.movie-info .movie-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin: 0 0 6px 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis; /* Corta títulos largos con puntos suspensivos */
+}
+
+.movie-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  color: #64748b;
+}
+
+.rating {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: #fbbf24;
+  font-weight: 700;
+}
+
+.icon-star {
+  width: 14px;
+  height: 14px;
+  fill: currentColor;
+}
+
+/* PAGINACIÓN */
+.pagination-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 48px;
+}
+
+.btn-secondary {
+  background: transparent;
+  border: 1px solid #00b493;
+  color: #00b493;
+  padding: 12px 36px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-secondary:hover {
+  background-color: rgba(0, 180, 147, 0.08);
+}
+
+/* ==========================================================================
+   2. TABLETS GRANDES / ESCRITORIO PEQUEÑO (769px - 1024px)
+   ========================================================================== */
+@media (max-width: 1024px) {
+  .hero-banner {
+    height: 55vh;
+  }
+
+  .hero-title {
+    font-size: 2.8rem;
+  }
+
+  .movies-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 20px;
+  }
+}
+
+/* ==========================================================================
+   3. TABLETS (481px - 768px)
+   ========================================================================== */
+@media (max-width: 768px) {
+  .hero-banner {
+    height: 45vh;
+    padding: 0 4%;
+  }
+
+  .hero-title {
+    font-size: 2.2rem;
+  }
+
+  .hero-description {
+    font-size: 0.95rem;
+    margin-bottom: 20px;
+  }
+
+  .movies-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+  }
+
+  .movies-section {
+    padding: 24px 4% 0 4%;
+  }
+}
+
+/* ==========================================================================
+   4. MÓVILES (320px - 480px) - MINI PORTADAS DE 2 EN 2
+   ========================================================================== */
+@media (max-width: 480px) {
+  
+  .movies-section {
+    padding: 20px 12px 0 12px !important;
+  }
+
+  .section-title {
+    font-size: 1.2rem;
+    margin-bottom: 16px;
+    font-weight: 700;
+  }
+
+  /* LA GRILLA: Obliga al navegador a crear dos columnas compactas del 50% */
+  .movies-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important; /* Dos columnas exactas */
+    gap: 12px !important; /* Separación pequeña entre portadas */
+    width: 100% !important;
+    box-sizing: border-box;
+  }
+
+  /* CRUCIAL: Forzamos a cualquier elemento hijo directo de la grilla 
+     (ya sea un article, un div o una etiqueta personalizada de Angular) 
+     a medir el ancho de su columna y no más */
+  .movies-grid > * {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box;
+  }
+
+  /* LA TARJETA: Ajusta el contenedor interno para que sea esbelto y redondeado */
+  .movie-card {
+    width: 100% !important;
+    max-width: 100% !important;
+    background-color: #0f1622;
+    border: 1px solid #141f32;
+    border-radius: 12px !important; /* Esquinas suavizadas */
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* EL PÓSTER: Mantiene la proporción 2:3 vertical para que no se estire horizontalmente */
+  .poster-wrapper {
+    width: 100% !important;
+    aspect-ratio: 2 / 3 !important;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .movie-poster {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important; /* Recorta la imagen para que rellene el contenedor sin deformarse */
+  }
+
+  /* INFO INFERIOR: Textos más pequeños */
+  .movie-info {
+    padding: 8px !important;
+  }
+
+  .movie-info .movie-title {
+    font-size: 0.8rem !important;
+    margin-bottom: 4px !important;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .movie-meta {
+    font-size: 0.7rem !important;
+    color: #64748b;
+  }
+
+  .btn-favorite-toggle {
+    top: 6px;
+    right: 6px;
+    width: 30px;
+    height: 30px;
+  }
+
+  .btn-secondary {
+    width: 100%;
+    padding: 12px 0;
+  }
+}

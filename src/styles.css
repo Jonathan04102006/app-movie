@@ -1,0 +1,44 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Tu regla global corregida (asegúrate de cerrar bien las llaves) */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #0f172a;
+  color: #ffffff;
+  margin: 40px 0 0 0;
+}
+
+/* ==========================================================================
+   ESTILO PERSONALIZADO PARA EL SCROLLBAR GLOBAL
+   ========================================================================== */
+
+/* 1. Contenedor del scroll (Ancho de la barra vertical) */
+::-webkit-scrollbar {
+  width: 10px;               /* La hace más delgada y elegante */
+  background-color: #070b12; /* Mismo color azul ultra oscuro de tu fondo */
+}
+
+/* 2. El fondo de la pista por donde se mueve el scroll */
+::-webkit-scrollbar-track {
+  background-color: #070b12;
+}
+
+/* 3. La barra deslizable (El indicador de posición) */
+::-webkit-scrollbar-thumb {
+  background-color: #1e293b; /* Gris oscuro metálico integrado */
+  border-radius: 20px;       /* Bordes completamente redondeados */
+  border: 2px solid #070b12; /* Crea un espacio alrededor para que se vea flotante */
+  transition: background-color 0.3s ease;
+}
+
+/* 4. Efecto Hover: Cambia al color turquesa/esmeralda de tu UI al pasar el mouse */
+::-webkit-scrollbar-thumb:hover {
+  background-color: #00b493; /* Tu color acento de la captura */
+}
