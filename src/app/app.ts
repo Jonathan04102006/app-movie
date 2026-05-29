@@ -2,7 +2,6 @@ import { Component, signal } from '@angular/core';
 import { RouterModule, RouterOutlet } from '@angular/router';
 import { Home } from './feactures/home/home';
 import { Favorites } from './feactures/favorites/favorites';
-import { Search } from './feactures/search/search';
 import { Navbar } from './shared/components/navbar/navbar';
 
 @Component({
@@ -12,7 +11,6 @@ import { Navbar } from './shared/components/navbar/navbar';
     RouterModule,
     Home,
     Favorites,
-    Search,
     Navbar,
   ],
   templateUrl: './app.html',

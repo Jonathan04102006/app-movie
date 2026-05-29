@@ -1,13 +1,9 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
-  "cli": {
-    "packageManager": "npm",
-    "analytics": "db213897-98aa-4215-8724-cd2eeddf21cf"
-  },
   "newProjectRoot": "projects",
   "projects": {
-    "The_Movie_Data_Base": {
+    "the-movie-data-base": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -17,30 +13,31 @@
         "build": {
           "builder": "@angular/build:application",
           "options": {
+            "outputPath": "dist/the-movie-data-base",
+            "index": "src/index.html",
             "browser": "src/main.ts",
-            "tsConfig": "tsconfig.app.json",
-            "assets": [
-              {
-                "glob": "**/*",
-                "input": "public"
-              }
+            "polyfills": [
+              "zone.js"
             ],
+            "tsConfig": "tsconfig.app.json",
+            "assets": [],
             "styles": [
               "src/styles.css"
-            ]
+            ],
+            "scripts": []
           },
           "configurations": {
             "production": {
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kB",
-                  "maximumError": "1MB"
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "4kB",
-                  "maximumError": "8kB"
+                  "maximumWarning": "10kb",
+                  "maximumError": "20kb"
                 }
               ],
               "outputHashing": "all"
@@ -54,23 +51,28 @@
           "defaultConfiguration": "production"
         },
         "serve": {
-          "options": {
-            "host": "localhost",
-            "port": 2026
-          },
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "The_Movie_Data_Base:build:production"
+              "buildTarget": "the-movie-data-base:build:production"
             },
             "development": {
-              "buildTarget": "The_Movie_Data_Base:build:development"
+              "buildTarget": "the-movie-data-base:build:development"
             }
           },
           "defaultConfiguration": "development"
         },
+        "extract-i18n": {
+          "builder": "@angular/build:extract-i18n"
+        },
         "test": {
-          "builder": "@angular/build:unit-test"
+          "builder": "@angular/build:vitest",
+          "options": {
+            "main": [
+              "src/test.ts"
+            ],
+            "tsConfig": "tsconfig.spec.json"
+          }
         }
       }
     }
